@@ -28,5 +28,4 @@ The application displays products on the home page and includes an AI-style chat
 
 ---
 
-## 📁 Project Structure
 
