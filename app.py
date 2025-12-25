@@ -14,10 +14,6 @@ products = {
     "headphones": {
         "price": 2000,
         "image": "https://tse1.mm.bing.net/th/id/OIP.H8rRfXMFSfNuV1sHkU9cLAHaHa?pid=Api&P=0&h=180"
-    },
-    "watch": {
-        "price": 3000,
-        "image": "https://ipadizate.com/hero/2023/09/apple-watch-series-9.png?width=1200"
     }
 }
 
@@ -56,6 +52,7 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
 
