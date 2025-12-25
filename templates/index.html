@@ -1,33 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AI E-commerce</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <title>AI E-commerce Website</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-<h1>AI E-commerce Store</h1>
+    <h1>AI E-commerce Store</h1>
 
-<div class="products">
-    {% for name, item in products.items() %}
-    <div class="card">
-        <img src="{{ item.image }}">
-        <h3>{{ name.capitalize() }}</h3>
-        <p>₹{{ item.price }}</p>
-        <button>Add to Cart</button>
+    <!-- PRODUCTS SECTION -->
+    <div class="products">
+        {% for name, item in products.items() %}
+        <div class="product">
+            <img src="{{ item.image }}" alt="{{ name }}">
+            <h3>{{ name }}</h3>
+            <p>Price: ₹{{ item.price }}</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
-<h2>AI Chatbot</h2>
+    <hr>
 
-<div id="chatbox">
-    <div id="messages"></div>
-    <input type="text" id="userInput" placeholder="Ask something">
-    <button onclick="sendMessage()">Send</button>
-</div>
+    <!-- CHAT SECTION -->
+    <h2>AI Chatbot</h2>
 
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+    <div id="chatBox" style="border:1px solid #ccc; height:200px; overflow-y:auto; padding:10px; margin-bottom:10px;">
+    </div>
+
+    <input type="text" id="userInput" placeholder="Ask about price, delivery, returns..." style="width:70%; padding:8px;">
+    <button id="sendBtn" style="padding:8px;">Send</button>
+
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 </html>
