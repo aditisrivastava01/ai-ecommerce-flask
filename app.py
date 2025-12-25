@@ -17,7 +17,7 @@ products = {
     },
     "watch": {
         "price": 3000,
-        "image": "https://images.macrumors.com/t/5qniIh0ci_t8vWfp7RjUzVXQI2I=/2500x/article-new/2023/08/Apple-Watch-Series-9-Pink-Aluminum-Feature.jpg"
+        "image": "https://ipadizate.com/hero/2023/09/apple-watch-series-9.png?width=1200"
     }
 }
 
