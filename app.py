@@ -1,58 +1,52 @@
 from flask import Flask, render_template, request, jsonify
+import os
 
 app = Flask(__name__)
 
-products = {
-    "phone": {
-        "price": 15000,
-        "image": "https://tse2.mm.bing.net/th/id/OIP.HbHLWFcUM4Cl5htyeWe7zAHaFJ?pid=Api&P=0&h=180"
-    },
-    "laptop": {
-        "price": 55000,
-        "image": "https://tse4.mm.bing.net/th/id/OIP.AkmVpbepWUKtdZEo8m7ilwHaFW?pid=Api&P=0&h=180"
-    },
-    "headphones": {
-        "price": 2000,
-        "image": "https://tse1.mm.bing.net/th/id/OIP.H8rRfXMFSfNuV1sHkU9cLAHaHa?pid=Api&P=0&h=180"
-    }
-}
-
+# Home page – products
 @app.route("/")
-def home():
+def index():
+    products = [
+        {
+            "name": "Phone",
+            "price": "₹15,000",
+            "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+        },
+        {
+            "name": "Laptop",
+            "price": "₹55,000",
+            "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+        },
+        {
+            "name": "Headphones",
+            "price": "₹2,000",
+            "image": "https://images.unsplash.com/photo-1518441986440-e0d88c70a3a7"
+        }
+    ]
     return render_template("index.html", products=products)
 
+
+# Chatbot API
 @app.route("/chat", methods=["POST"])
 def chat():
-    msg = request.json["message"].lower()
+    data = request.get_json()
+    user_message = data.get("message", "").lower()
 
-    if "hi" in msg or "hello" in msg:
-        reply = "Hello 😊 How can I help you?"
-
-    elif "price" in msg:
-        for name in products:
-            if name in msg:
-                reply = f"{name.capitalize()} price is ₹{products[name]['price']}"
-                break
-        else:
-            reply = "Please ask like: phone price, watch price"
-
-    elif "delivery" in msg:
-        reply = "Delivery takes 3–5 working days 🚚"
-
-    elif "return" in msg:
-        reply = "7 days easy return policy."
-
+    if "price" in user_message:
+        reply = "Prices are mentioned below each product."
+    elif "delivery" in user_message:
+        reply = "Delivery takes 3-5 business days."
+    elif "return" in user_message:
+        reply = "7 days easy return policy available."
+    elif "hello" in user_message or "hi" in user_message:
+        reply = "Hello! How can I help you today?"
     else:
-        reply = "Ask me about product price, delivery or return."
+        reply = "I can help with price, delivery, and return policy."
 
     return jsonify({"reply": reply})
 
-import os
 
+# Render port binding (VERY IMPORTANT)
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
-
-
-
-
