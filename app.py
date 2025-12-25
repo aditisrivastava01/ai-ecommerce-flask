@@ -17,7 +17,7 @@ products = {
     },
     "watch": {
         "price": 3000,
-        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6519/6519486_sd.jpg"
+        "image": "https://tse2.mm.bing.net/th/id/OIP.djCOEI4CE2mu_zWwgFqLuAHaI2?rs=1&pid=ImgDetMain&o=7&rm=3"
     }
 }
 
@@ -56,4 +56,5 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
