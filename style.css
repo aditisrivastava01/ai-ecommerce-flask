@@ -58,3 +58,8 @@ body {
     object-fit: contain;
 }
 
+img {
+    max-width: 200px;
+    height: auto;
+}
+
