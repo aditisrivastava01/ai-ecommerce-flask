@@ -17,7 +17,7 @@ products = {
     },
     "watch": {
         "price": 3000,
-        "image": "https://tse2.mm.bing.net/th/id/OIP.djCOEI4CE2mu_zWwgFqLuAHaI2?rs=1&pid=ImgDetMain&o=7&rm=3"
+        "image": "https://images.macrumors.com/t/5qniIh0ci_t8vWfp7RjUzVXQI2I=/2500x/article-new/2023/08/Apple-Watch-Series-9-Pink-Aluminum-Feature.jpg"
     }
 }
 
@@ -56,5 +56,6 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
