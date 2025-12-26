@@ -1,41 +1,38 @@
-const chatBox = document.getElementById("chatBox");
-const userInput = document.getElementById("userInput");
-const sendBtn = document.getElementById("sendBtn");
+let cart = [];
 
-function addMessage(sender, message) {
-    const msg = document.createElement("div");
-    msg.innerHTML = `<b>${sender}:</b> ${message}`;
-    chatBox.appendChild(msg);
-    chatBox.scrollTop = chatBox.scrollHeight;
+function addToCart(item) {
+    cart.push(item);
+    renderCart();
 }
 
-sendBtn.addEventListener("click", sendMessage);
-userInput.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-        sendMessage();
-    }
-});
+function renderCart() {
+    let list = document.getElementById("cartList");
+    list.innerHTML = "";
+    cart.forEach(i => {
+        let li = document.createElement("li");
+        li.innerText = i;
+        list.appendChild(li);
+    });
+}
 
-function sendMessage() {
-    const message = userInput.value.trim();
-    if (message === "") return;
+function sendMsg() {
+    let msgInput = document.getElementById("msg");
+    let msg = msgInput.value;
+    if (msg === "") return;
 
-    addMessage("You", message);
-    userInput.value = "";
+    let chat = document.getElementById("chat");
+    chat.innerHTML += "<p><b>You:</b> " + msg + "</p>";
 
     fetch("/chat", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ message: message })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg })
     })
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
-        addMessage("Bot", data.reply);
-    })
-    .catch(error => {
-        addMessage("Bot", "Server error. Try again.");
-        console.error(error);
+        chat.innerHTML += "<p><b>Bot:</b> " + data.reply + "</p>";
+        chat.scrollTop = chat.scrollHeight;
     });
+
+    msgInput.value = "";
 }
