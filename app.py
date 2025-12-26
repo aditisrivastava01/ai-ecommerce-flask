@@ -4,14 +4,14 @@ import os
 app = Flask(__name__)
 
 products = [
-    {"id": 1, "name": "Smart Watch", "price": 2999, "img": "https://m.media-amazon.com/images/I/71x5aYkz7KL._SX679_.jpg"},
-    {"id": 2, "name": "Laptop", "price": 45999, "img": "https://m.media-amazon.com/images/I/71k3N8j7mIL._SX679_.jpg"},
-    {"id": 3, "name": "Headphones", "price": 1999, "img": "https://m.media-amazon.com/images/I/61CGHv6kmWL._SX679_.jpg"},
-    {"id": 4, "name": "Mobile Phone", "price": 14999, "img": "https://m.media-amazon.com/images/I/71xb2xkN5qL._SX679_.jpg"},
-    {"id": 5, "name": "Keyboard", "price": 999, "img": "https://m.media-amazon.com/images/I/61l9ppRIiqL._SX679_.jpg"},
-    {"id": 6, "name": "Mouse", "price": 499, "img": "https://m.media-amazon.com/images/I/61UxfXTUyvL._SX679_.jpg"},
-    {"id": 7, "name": "Bluetooth Speaker", "price": 2499, "img": "https://m.media-amazon.com/images/I/71rZ0P6I4JL._SX679_.jpg"},
-    {"id": 8, "name": "Power Bank", "price": 1799, "img": "https://m.media-amazon.com/images/I/71lVwl3q-kL._SX679_.jpg"}
+    {"id": 1, "name": "Smart Watch", "price": 2999, "img": "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b"},
+    {"id": 2, "name": "Laptop", "price": 45999, "img": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"},
+    {"id": 3, "name": "Headphones", "price": 1999, "img": "https://images.unsplash.com/photo-1518444028785-8f6a2a0c4b3e"},
+    {"id": 4, "name": "Mobile Phone", "price": 14999, "img": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"},
+    {"id": 5, "name": "Keyboard", "price": 899, "img": "https://images.unsplash.com/photo-1587829741301-dc798b83add3"},
+    {"id": 6, "name": "Mouse", "price": 499, "img": "https://images.unsplash.com/photo-1586810724476-c294fb7ac01b"},
+    {"id": 7, "name": "Bluetooth Speaker", "price": 2499, "img": "https://images.unsplash.com/photo-1585386959984-a41552231693"},
+    {"id": 8, "name": "Power Bank", "price": 1799, "img": "https://images.unsplash.com/photo-1609592064493-1aa6f07b9a2e"}
 ]
 
 @app.route("/")
@@ -20,21 +20,18 @@ def home():
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    user_msg = request.json.get("message", "").lower()
+    data = request.json
+    msg = data.get("message", "").lower()
 
-    if "price" in user_msg:
-        reply = "All prices are shown below each product."
-    elif "delivery" in user_msg:
-        reply = "Delivery takes 3-5 working days 🚚"
-    elif "return" in user_msg:
-        reply = "7-day easy return policy ✅"
-    elif "hello" in user_msg or "hi" in user_msg:
-        reply = "Hello 👋 How can I help you?"
+    if "price" in msg:
+        return jsonify({"reply": "All prices are mentioned below each product 🙂"})
+    elif "delivery" in msg:
+        return jsonify({"reply": "Delivery takes 3–5 working days 🚚"})
+    elif "return" in msg:
+        return jsonify({"reply": "7 days easy return policy 🔁"})
     else:
-        reply = "Sorry, I can answer about price, delivery & return."
-
-    return jsonify({"reply": reply})
+        return jsonify({"reply": "I can help with prices, delivery and return policy 💬"})
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
