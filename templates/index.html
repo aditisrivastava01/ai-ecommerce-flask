@@ -6,31 +6,25 @@
 </head>
 <body>
 
-<h1>AI E-commerce Store</h1>
+<h1>🛒 AI E-commerce Store</h1>
+<div id="cart">Cart Items: <span id="cart-count">0</span></div>
 
 <div class="products">
     {% for p in products %}
     <div class="card">
-        <img src="{{ p.img }}">
+        <img src="{{ p.img }}" alt="{{ p.name }}">
         <h3>{{ p.name }}</h3>
         <p>₹{{ p.price }}</p>
-        <button onclick="addToCart('{{ p.name }}')">Add to Cart</button>
+        <button onclick="addToCart()">Add to Cart</button>
     </div>
     {% endfor %}
 </div>
 
-<!-- CART -->
-<div class="cart">
-    <h2>🛒 Cart</h2>
-    <ul id="cartList"></ul>
-</div>
-
-<!-- CHAT BOX -->
 <div class="chatbox">
-    <h3>AI Chat 🤖</h3>
-    <div id="chat"></div>
-    <input type="text" id="msg" placeholder="Ask something...">
-    <button onclick="sendMsg()">Send</button>
+    <h2>🤖 AI Chat</h2>
+    <div id="chat-messages"></div>
+    <input type="text" id="chat-input" placeholder="Ask something...">
+    <button onclick="sendMessage()">Send</button>
 </div>
 
 <script src="/static/script.js"></script>
