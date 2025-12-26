@@ -4,14 +4,14 @@ import os
 app = Flask(__name__)
 
 products = [
-    {"id": 1, "name": "Smart Watch", "price": 2999, "img": "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b"},
-    {"id": 2, "name": "Laptop", "price": 45999, "img": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"},
-    {"id": 3, "name": "Headphones", "price": 1999, "img": "https://images.unsplash.com/photo-1518444028785-8f6a2a0c4b3e"},
-    {"id": 4, "name": "Mobile Phone", "price": 14999, "img": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"},
-    {"id": 5, "name": "Keyboard", "price": 899, "img": "https://images.unsplash.com/photo-1587829741301-dc798b83add3"},
-    {"id": 6, "name": "Mouse", "price": 499, "img": "https://images.unsplash.com/photo-1586810724476-c294fb7ac01b"},
-    {"id": 7, "name": "Bluetooth Speaker", "price": 2499, "img": "https://images.unsplash.com/photo-1585386959984-a41552231693"},
-    {"id": 8, "name": "Power Bank", "price": 1799, "img": "https://images.unsplash.com/photo-1609592064493-1aa6f07b9a2e"}
+    {"id": 1, "name": "Smart Watch", "price": 2999, "img": "https://tse2.mm.bing.net/th/id/OIP.Cgg7x4IfpiNhCdalpA8DOQHaHc?rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {"id": 2, "name": "Laptop", "price": 45999, "img": "https://th.bing.com/th/id/OIP.gnT4D66Rj_LIWsmehIDxzgHaGS?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {"id": 3, "name": "Headphones", "price": 1999, "img": "https://tse3.mm.bing.net/th/id/OIP.pgzU33CxcqL3NvDutVnJTgHaI0?rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {"id": 4, "name": "Mobile Phone", "price": 14999, "img": "https://tse2.mm.bing.net/th/id/OIP.6sZV_t2bmKn_yeuegDnKYwHaEL?rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {"id": 5, "name": "Keyboard", "price": 899, "img": "https://th.bing.com/th/id/OIP.rOPB8zwx14GQjoe9sURbcwHaEK?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {"id": 6, "name": "Mouse", "price": 499, "img": "https://tse2.mm.bing.net/th/id/OIP.0-KIptBohQtxzXbKAKqUFAHaFM?rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {"id": 7, "name": "Bluetooth Speaker", "price": 2499, "img": "https://m.media-amazon.com/images/I/71pECjS2piL._AC_SL1500_.jpg"},
+    {"id": 8, "name": "Power Bank", "price": 1799, "img": "https://m.media-amazon.com/images/I/61sautq2miL._AC_SL1500_.jpg"}
 ]
 
 @app.route("/")
@@ -24,14 +24,15 @@ def chat():
     msg = data.get("message", "").lower()
 
     if "price" in msg:
-        return jsonify({"reply": "All prices are mentioned below each product 🙂"})
+        return jsonify({"reply": "All prices are mentioned below each product "})
     elif "delivery" in msg:
-        return jsonify({"reply": "Delivery takes 3–5 working days 🚚"})
+        return jsonify({"reply": "Delivery takes 3–5 working days "})
     elif "return" in msg:
-        return jsonify({"reply": "7 days easy return policy 🔁"})
+        return jsonify({"reply": "7 days easy return policy "})
     else:
-        return jsonify({"reply": "I can help with prices, delivery and return policy 💬"})
+        return jsonify({"reply": "I can help with prices, delivery and return policy "})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
